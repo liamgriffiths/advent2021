@@ -1,10 +1,10 @@
 # count the number of times the val increases from the previous val in the list
 def part1(xs) =
-  (1...xs.size).reduce(0) { |a, i| xs[i] > xs[i - 1] ? a + 1 : a }
+  (1...xs.size).count { xs[_1] > xs[_1 - 1] }
 
 # transform the list into a windowed list(3), sum up each window, then use the count from part1
 def part2(xs, win = 3) =
-  xs.each_cons(win).map(&:sum).then { |xs| part1(xs) }
+  xs.each_cons(win).map(&:sum).then { part1(_1) }
 
 measurements = DATA.map(&:to_i)
 puts "part1: #{part1(measurements)}"
